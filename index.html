@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Riskora | Institutional Grade Intelligence</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary": "#003920",
+                        "outline": "#859585",
+                        "tertiary-fixed-dim": "#ffb598",
+                        "tertiary": "#ffc5af",
+                        "surface-dim": "#0d1320",
+                        "primary": "#00f098",
+                        "primary-container": "#00d183",
+                        "on-primary-fixed-variant": "#005231",
+                        "on-primary-fixed": "#002111",
+                        "surface-tint": "#00e38f",
+                        "on-error-container": "#ffdad6",
+                        "secondary-container": "#3a4a5f",
+                        "error": "#ffb4ab",
+                        "surface-bright": "#333947",
+                        "surface-container-lowest": "#070e1a",
+                        "on-secondary-fixed": "#0b1c30",
+                        "on-tertiary-container": "#783314",
+                        "on-primary-container": "#005331",
+                        "secondary": "#b7c8e1",
+                        "tertiary-container": "#ff9e76",
+                        "primary-fixed-dim": "#00e38f",
+                        "secondary-fixed-dim": "#b7c8e1",
+                        "surface-container-low": "#151c28",
+                        "surface-container-high": "#232a37",
+                        "on-tertiary": "#591d00",
+                        "on-secondary-container": "#a9bad3",
+                        "on-surface-variant": "#bbcbba",
+                        "on-secondary-fixed-variant": "#38485d",
+                        "surface": "#0d1320",
+                        "background": "#0d1320",
+                        "outline-variant": "#3c4a3d",
+                        "primary-fixed": "#53ffab",
+                        "secondary-fixed": "#d3e4fe",
+                        "surface-variant": "#2e3542",
+                        "inverse-on-surface": "#2a313e",
+                        "on-background": "#dce2f4",
+                        "on-secondary": "#213145",
+                        "error-container": "#93000a",
+                        "inverse-primary": "#006d42",
+                        "on-tertiary-fixed": "#370e00",
+                        "on-tertiary-fixed-variant": "#763213",
+                        "on-surface": "#dce2f4",
+                        "on-error": "#690005",
+                        "surface-container-highest": "#2e3542",
+                        "surface-container": "#19202c",
+                        "inverse-surface": "#dce2f4",
+                        "tertiary-fixed": "#ffdbce"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Plus Jakarta Sans"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        .glass-panel {
+            background: rgba(46, 53, 66, 0.4);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+        .text-gradient {
+            background: linear-gradient(135deg, #00f098 0%, #00d183 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .btn-gradient {
+            background: linear-gradient(135deg, #00f098 0%, #00d183 100%);
+        }
+        .primary-gradient {
+            background: linear-gradient(135deg, #00f098 0%, #00d183 100%);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            min-height: max(884px, 100dvh);
+        }
+        h1, h2, h3 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        .page-section {
+            display: none;
+        }
+        .page-section.active {
+            display: block;
+        }
+        .tonal-glow {
+            box-shadow: 0 0 40px 5px rgba(0, 240, 152, 0.03);
+        }
+        input:focus {
+            border-color: transparent !important;
+            ring-color: transparent !important;
+        }
+        .nav-link {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .nav-link.active {
+            color: #00f098;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface selection:bg-primary selection:text-on-primary">
+    <!-- Global Header Navigation -->
+    <header class="fixed top-0 w-full z-50 bg-slate-950/80 backdrop-blur-xl shadow-2xl shadow-emerald-500/5">
+        <div class="flex justify-between items-center px-6 py-4 max-w-7xl mx-auto">
+            <div class="flex items-center gap-3 cursor-pointer" onclick="navigateTo('home')">
+                <span class="material-symbols-outlined text-emerald-400 text-2xl">monitoring</span>
+                <span class="font-['Plus_Jakarta_Sans'] font-bold tracking-tight text-2xl font-black tracking-tighter text-slate-50 dark:text-emerald-400">Riskora</span>
+            </div>
+            <nav class="hidden md:flex gap-8 items-center font-['Plus_Jakarta_Sans'] font-bold tracking-tight">
+                <a class="nav-link active text-emerald-400 transition-colors duration-300" onclick="navigateTo('home')">Home</a>
+                <a class="nav-link text-slate-400 hover:text-emerald-300 transition-colors duration-300" onclick="navigateTo('features')">Features</a>
+                <a class="nav-link text-slate-400 hover:text-emerald-300 transition-colors duration-300" onclick="navigateTo('signup')">Waitlist</a>
+                <a class="nav-link text-slate-400 hover:text-emerald-300 transition-colors duration-300" onclick="navigateTo('dashboard')">Dashboard</a>
+            </nav>
+            <button class="bg-primary text-on-primary px-5 py-2.5 rounded-lg font-bold text-sm hover:scale-95 transition-transform active:scale-90" onclick="navigateTo('signup')">
+                Join Waitlist
+            </button>
+        </div>
+    </header>
+
+    <!-- ===================== PAGE 1: LANDING/HOME ===================== -->
+    <div id="home" class="page-section active">
+        <main class="pt-24">
+            <!-- Hero Section -->
+            <section class="relative min-h-[795px] flex flex-col justify-center items-center px-6 overflow-hidden">
+                <div class="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_50%_50%,_rgba(0,240,152,0.05)_0%,_transparent_70%)]"></div>
+                <div class="absolute top-1/4 -right-20 w-96 h-96 bg-primary/10 rounded-full blur-[120px]"></div>
+                <div class="max-w-5xl w-full text-center space-y-8">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-container-high border border-outline-variant/20 mb-4">
+                        <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+                        <span class="text-[10px] uppercase tracking-[0.2em] font-bold text-primary">Intelligence Node Alpha Active</span>
+                    </div>
+                    <h1 class="text-6xl md:text-8xl font-headline font-extrabold tracking-tighter text-on-surface leading-[1.05]">
+                        Rethinking Risk in an <br/>
+                        <span class="text-gradient">Age of Uncertainty.</span>
+                    </h1>
+                    <p class="max-w-2xl mx-auto text-lg md:text-xl text-on-surface-variant leading-relaxed">
+                        Private intelligence for venture and quantitative finance. Navigate global volatility with high-fidelity predictive modeling and institutional-grade oversight.
+                    </p>
+                    <div class="flex flex-col md:flex-row gap-4 justify-center pt-8">
+                        <button class="btn-gradient text-on-primary px-10 py-5 rounded-xl font-bold text-lg hover:shadow-[0_0_40px_rgba(0,240,152,0.3)] transition-all flex items-center justify-center gap-2" onclick="navigateTo('signup')">
+                            Secure Priority Access
+                            <span class="material-symbols-outlined">arrow_forward</span>
+                        </button>
+                        <button class="bg-surface-container-high text-on-surface px-10 py-5 rounded-xl font-bold text-lg hover:bg-surface-container-highest transition-all border border-outline-variant/10" onclick="navigateTo('features')">
+                            View Documentation
+                        </button>
+                    </div>
+                </div>
+                <!-- Dashboard Preview Mock -->
+                <div class="mt-20 w-full max-w-6xl relative">
+                    <div class="aspect-[16/9] rounded-2xl glass-panel border border-outline-variant/10 shadow-3xl overflow-hidden p-1">
+                        <img class="w-full h-full object-cover rounded-xl opacity-80" alt="Dark futuristic fintech dashboard" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBjC1ElKllraf5m_8W5-X9douzQJ_4-RxSEkuVlI7QnGJ7ahXK8VKnfKqLBFvOOHtTrrgqmi1xwvRddVzRPiNuxz5CQf0FT80wJ4W31NZCjhkbDfjpIcyyZ1hP79iz8yy44ct_KCjhtW4nhtVJoL16b-j6FBzbkI5_Y8vSTaPubiWFYQ1bvqfIp7z2V-hA4VevHFJqFVNSjjNHdk9Xomflzi8i0N1bZPJhQUfLYgZw-i1CQ1RQp6o59ALDMtbyQOUgvnD-lM2nZZIY"/>
+                    </div>
+                </div>
+            </section>
+            <!-- Bento Grid: Core Capabilities -->
+            <section class="py-32 px-6 max-w-7xl mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+                    <!-- Real-time Velocity Card -->
+                    <div class="md:col-span-8 group relative overflow-hidden bg-surface-container-low rounded-3xl p-10 flex flex-col justify-between min-h-[400px]">
+                        <div class="relative z-10">
+                            <div class="flex items-center gap-4 mb-8">
+                                <div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
+                                    <span class="material-symbols-outlined text-primary text-3xl">speed</span>
+                                </div>
+                                <h3 class="text-2xl font-headline font-bold">Real-time Velocity</h3>
+                            </div>
+                            <p class="text-on-surface-variant text-lg max-w-md">
+                                Compute cycles at the edge. Our distributed architecture processes high-frequency signals before the market reacts.
+                            </p>
+                        </div>
+                        <div class="relative z-10 flex items-baseline gap-2">
+                            <span class="text-7xl md:text-9xl font-headline font-black text-primary tracking-tighter">1.2</span>
+                            <span class="text-2xl md:text-4xl font-headline font-bold text-on-surface">Petaflops</span>
+                        </div>
+                        <div class="absolute -right-20 -bottom-20 w-80 h-80 bg-primary/5 rounded-full blur-[80px] group-hover:bg-primary/10 transition-all duration-500"></div>
+                    </div>
+                    <!-- Multi-layered Security Card -->
+                    <div class="md:col-span-4 bg-surface-container-high rounded-3xl p-10 flex flex-col gap-8 border border-outline-variant/5">
+                        <div class="w-12 h-12 rounded-xl bg-tertiary-container/10 flex items-center justify-center">
+                            <span class="material-symbols-outlined text-tertiary-container text-3xl">verified_user</span>
+                        </div>
+                        <h3 class="text-2xl font-headline font-bold">Multi-layered Security</h3>
+                        <p class="text-on-surface-variant leading-relaxed">
+                            End-to-end encrypted intelligence pipelines. We ensure your proprietary strategies remain isolated and sovereign at all times.
+                        </p>
+                        <ul class="space-y-4 pt-4">
+                            <li class="flex items-center gap-3 text-sm font-medium">
+                                <span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+                                Zero-knowledge proofs
+                            </li>
+                            <li class="flex items-center gap-3 text-sm font-medium">
+                                <span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+                                Quantum-resistant keys
+                            </li>
+                            <li class="flex items-center gap-3 text-sm font-medium">
+                                <span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+                                Sovereign Data Storage
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- Asymmetric Secondary Feature -->
+                    <div class="md:col-span-5 bg-surface-container-lowest border border-outline-variant/5 rounded-3xl p-10 flex flex-col justify-end min-h-[350px]">
+                        <div class="mb-auto">
+                            <span class="text-[10px] uppercase tracking-widest font-bold text-outline py-1 px-2 rounded bg-surface-variant/30">Module 03</span>
+                        </div>
+                        <h3 class="text-3xl font-headline font-bold mb-4">Risk Sovereignty</h3>
+                        <p class="text-on-surface-variant">Autonomous risk mitigation that operates independently of traditional banking infrastructure.</p>
+                    </div>
+                    <div class="md:col-span-7 relative group rounded-3xl overflow-hidden min-h-[350px]">
+                        <img class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Crystalline data structures" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA6LIZhPJOe0WgvGXkU4VR3iukb_UJTjpWL7445e5HmPAGqUGKjI74rGXldSqwP7aXgKIQyR-4FW9LGdN-na2iygX2WNhlRjBulj_z3K5yBI83srkt2Oa88v4jrLPqssmkNwHXg-gchgpCajQUPd3ZhuVzOpEIJqwtg-rsbw_I3CoAyucNx-sQpZthfBSGFivec5HzsAg6GwRihHpJD0TrLg48SuoFY584dU6UQuMVMEtCl56MdesWJls7B6bxkWcgevruMHKP6dsw"/>
+                        <div class="absolute inset-0 bg-gradient-to-t from-surface-dim via-surface-dim/40 to-transparent p-10 flex flex-col justify-end">
+                            <h3 class="text-3xl font-headline font-bold mb-2">Predictive Synthesis</h3>
+                            <p class="text-on-surface max-w-sm">Aggregating alternative data into actionable institutional signals.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- Newsletter / CTA Block -->
+            <section class="py-32 px-6">
+                <div class="max-w-4xl mx-auto rounded-3xl bg-primary-container p-12 text-center text-on-primary-container relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-64 h-64 bg-on-primary-container/10 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl"></div>
+                    <h2 class="text-4xl md:text-5xl font-headline font-black tracking-tight mb-6">Institutional Grade Intelligence.</h2>
+                    <p class="text-lg mb-10 opacity-90 max-w-xl mx-auto font-medium">Join the select cohort of quant firms and venture partners securing the next generation of risk management.</p>
+                    <div class="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+                        <input class="flex-1 bg-on-primary-container/10 border-transparent focus:ring-on-primary-container rounded-xl px-6 py-4 placeholder:text-on-primary-container/50 text-on-primary-container font-bold" placeholder="Institutional Email" type="email"/>
+                        <button class="bg-on-primary-container text-primary-container px-8 py-4 rounded-xl font-extrabold uppercase tracking-wider text-sm hover:scale-105 transition-transform" onclick="navigateTo('signup')">
+                            Connect
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- ===================== PAGE 2: FEATURES ===================== -->
+    <div id="features" class="page-section">
+        <main class="pt-32 pb-24 px-6 max-w-7xl mx-auto">
+            <!-- Hero Section -->
+            <section class="mb-24 text-center">
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-surface-container-high mb-8">
+                    <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+                    <span class="text-xs font-label uppercase tracking-widest font-bold text-primary">Live Institutional Access</span>
+                </div>
+                <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight mb-8 leading-[1.1]">
+                    Precision in the <br/>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary via-primary-container to-emerald-300">Face of Uncertainty.</span>
+                </h1>
+                <p class="text-on-surface-variant max-w-2xl mx-auto text-lg md:text-xl font-light leading-relaxed">
+                    Riskora leverages sub-millisecond latency and cryptographic immutability to deliver the world's most advanced risk management architecture for elite financial systems.
+                </p>
+            </section>
+            <!-- Bento Grid Features -->
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+                <!-- Algorithmic Risk Assessment (Large Feature) -->
+                <div class="md:col-span-8 group relative overflow-hidden rounded-xl bg-surface-container-low p-8 transition-all hover:bg-surface-container-high">
+                    <div class="relative z-10">
+                        <div class="flex justify-between items-start mb-12">
+                            <div class="p-3 bg-surface-container-highest rounded-xl text-primary">
+                                <span class="material-symbols-outlined text-4xl">analytics</span>
+                            </div>
+                            <div class="text-right">
+                                <div class="text-4xl font-bold text-primary font-headline">2.4ms</div>
+                                <div class="text-[10px] uppercase tracking-widest text-on-surface-variant">Execution Latency</div>
+                            </div>
+                        </div>
+                        <h3 class="text-3xl font-bold mb-4 tracking-tight">Algorithmic Risk Assessment</h3>
+                        <p class="text-on-surface-variant text-lg leading-relaxed max-w-md">
+                            Proprietary neural networks analyze millions of data points per second to predict volatility before it impacts your portfolio.
+                        </p>
+                        <div class="mt-12 flex gap-4">
+                            <div class="flex flex-col gap-1 px-4 py-2 bg-surface-container-highest rounded-lg border-l-2 border-primary">
+                                <span class="text-[10px] uppercase text-on-surface-variant">Data Throughput</span>
+                                <span class="text-lg font-bold font-headline">1.2 TB/s</span>
+                            </div>
+                            <div class="flex flex-col gap-1 px-4 py-2 bg-surface-container-highest rounded-lg border-l-2 border-primary">
+                                <span class="text-[10px] uppercase text-on-surface-variant">Prediction Accuracy</span>
+                                <span class="text-lg font-bold font-headline">99.98%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="absolute top-0 right-0 w-1/2 h-full opacity-10 bg-gradient-to-l from-primary to-transparent pointer-events-none"></div>
+                    <div class="absolute bottom-0 right-0 translate-y-1/2 translate-x-1/4 w-96 h-96 bg-primary/10 rounded-full blur-[80px]"></div>
+                </div>
+                <!-- Instant Liquidity (Medium Column) -->
+                <div class="md:col-span-4 flex flex-col gap-6">
+                    <div class="flex-1 rounded-xl bg-surface-container-high p-8 relative overflow-hidden group">
+                        <div class="mb-6 p-3 bg-primary-container/20 rounded-xl w-fit text-primary">
+                            <span class="material-symbols-outlined text-3xl">currency_exchange</span>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-3 tracking-tight">Instant Liquidity</h3>
+                        <p class="text-on-surface-variant text-sm leading-relaxed">
+                            Access deep liquidity pools across global markets without slippage or settlement delay.
+                        </p>
+                        <div class="mt-8">
+                            <div class="h-2 w-full bg-surface-container-highest rounded-full overflow-hidden">
+                                <div class="h-full w-[85%] bg-primary rounded-full"></div>
+                            </div>
+                            <div class="flex justify-between mt-2">
+                                <span class="text-[10px] font-bold text-on-surface-variant">POOL DEPTH</span>
+                                <span class="text-[10px] font-bold text-primary">$4.2B</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex-1 rounded-xl glass-panel p-8 relative overflow-hidden group border border-outline-variant/10">
+                        <div class="mb-6 p-3 bg-surface-container-highest rounded-xl w-fit text-tertiary-container">
+                            <span class="material-symbols-outlined text-3xl">shield_lock</span>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-3 tracking-tight">Immutable Security</h3>
+                        <p class="text-on-surface-variant text-sm leading-relaxed">
+                            Hardware-level encryption and distributed ledger tech ensure your assets remain unreachable.
+                        </p>
+                    </div>
+                </div>
+                <!-- Detailed Grid Row -->
+                <div class="md:col-span-4 rounded-xl bg-surface-container-lowest p-8 border border-outline-variant/10">
+                    <h4 class="text-xs uppercase tracking-[0.2em] font-bold text-on-surface-variant mb-6">Network Health</h4>
+                    <div class="space-y-6">
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm font-medium">Mainnet Alpha</span>
+                            <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-primary/10 text-primary uppercase">Active</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm font-medium">Validator Nodes</span>
+                            <span class="text-sm font-headline font-bold">1,024</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm font-medium">Uptime</span>
+                            <span class="text-sm font-headline font-bold">100.00%</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="md:col-span-8 relative rounded-xl overflow-hidden min-h-[300px]">
+                    <img alt="abstract visualization of financial data flow" class="absolute inset-0 w-full h-full object-cover grayscale opacity-40 mix-blend-screen" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB6tuSZdYpTyBwSkg8wssOQZE3bT7IuHBVDIfF5IVPRtf0tUysB9Bfm2tT9JQuWv7eYFGsO8qEg7wgxStHLX4EKZpZ-aNLoicILhCTUcgMO9YOKNlpKwKTr3IKe4lM34mCJIdPWPFjSZ03gbg7g91WvWwm8p2AoHJo8VdcSHQEexgnVhZ7Ji8SGyV3qahTj7PVStAT44k1odvVOHelbmyu4JpO6_kJ-hiDGmY5lydH_Z9pfeBlz0wzPqLahDPHqxcoKOdgNhwNmJ8M"/>
+                    <div class="absolute inset-0 bg-gradient-to-t from-surface-container-low via-surface-container-low/60 to-transparent p-10 flex flex-col justify-end">
+                        <h3 class="text-3xl font-black mb-2 tracking-tighter">Global Compliance Engine</h3>
+                        <p class="text-on-surface-variant max-w-lg">Automatically adjusting to evolving regulatory frameworks in over 160 jurisdictions through real-time smart contract updates.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Metric Section -->
+            <section class="mt-24 py-16 px-8 rounded-3xl bg-surface-container-low text-center">
+                <h2 class="text-sm font-bold tracking-[0.4em] uppercase text-on-surface-variant mb-12">Institutional Footprint</h2>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-12">
+                    <div>
+                        <div class="text-4xl md:text-5xl font-black font-headline text-primary mb-2">$85B+</div>
+                        <div class="text-xs font-bold uppercase text-on-surface-variant tracking-wider">AUM Managed</div>
+                    </div>
+                    <div>
+                        <div class="text-4xl md:text-5xl font-black font-headline text-primary mb-2">140+</div>
+                        <div class="text-xs font-bold uppercase text-on-surface-variant tracking-wider">Asset Classes</div>
+                    </div>
+                    <div>
+                        <div class="text-4xl md:text-5xl font-black font-headline text-primary mb-2">0</div>
+                        <div class="text-xs font-bold uppercase text-on-surface-variant tracking-wider">Security Breaches</div>
+                    </div>
+                    <div>
+                        <div class="text-4xl md:text-5xl font-black font-headline text-primary mb-2">12ms</div>
+                        <div class="text-xs font-bold uppercase text-on-surface-variant tracking-wider">Global Sync</div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- ===================== PAGE 3: SIGNUP/WAITLIST ===================== -->
+    <div id="signup" class="page-section">
+        <main class="min-h-screen relative flex flex-col md:flex-row items-stretch overflow-hidden pt-24 md:pt-0">
+            <!-- Left Section: Editorial/Brand Imagery -->
+            <section class="hidden md:flex w-1/2 bg-surface-container-lowest relative items-center justify-center p-12 overflow-hidden">
+                <div class="absolute inset-0 z-0">
+                    <img class="w-full h-full object-cover opacity-40 mix-blend-luminosity" alt="Abstract 3D crystalline structures" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCDxNJbob5pZ1l6fJmm7cEuVWgsCpHuPRlIpFvVzJNEIUKtdH1xr1Ws-zkFzLa-nqHX_kL7ZvpjdXIuDf2JGNq3h8K6Hkg4UkNeDAHvAM1Y-ruZ-MD8wfEAa42KmAmfvsgmvW8b5qb3csupS9LIKR00JJCRdYgWzc27BWs7Tcmx3V75r3Hwy-X9U5mn8fcO70Ew3laBnpc_NE2UbQ1elqyzvcHaRomMKDc9f05eywuhczh_RqI5C4K38s-aagU7n8CyBYVr1doGDfU"/>
+                    <div class="absolute inset-0 bg-gradient-to-r from-surface-container-lowest via-transparent to-transparent"></div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest to-transparent"></div>
+                </div>
+                <div class="relative z-10 max-w-lg">
+                    <div class="flex items-center gap-3 mb-8">
+                        <span class="material-symbols-outlined text-primary text-4xl">monitoring</span>
+                        <span class="text-3xl font-black tracking-tighter text-on-surface font-headline uppercase">Riskora</span>
+                    </div>
+                    <h2 class="text-6xl font-extrabold font-headline leading-[1.1] mb-6 tracking-tight">
+                        Institutional <span class="text-primary italic">Intelligence</span> at Scale.
+                    </h2>
+                    <p class="text-on-surface-variant text-lg leading-relaxed max-w-md">
+                        Engineered for high-frequency precision and absolute control. Join the next generation of risk architecture.
+                    </p>
+                    <div class="mt-12 flex gap-4">
+                        <div class="flex -space-x-3">
+                            <div class="w-10 h-10 rounded-full border-2 border-surface bg-surface-container-high"></div>
+                            <div class="w-10 h-10 rounded-full border-2 border-surface bg-surface-container-low"></div>
+                            <div class="w-10 h-10 rounded-full border-2 border-surface bg-surface-container-highest flex items-center justify-center text-[10px] font-bold">
+                                +2k
+                            </div>
+                        </div>
+                        <div class="text-sm font-medium self-center text-on-surface-variant">
+                            Join top-tier institutions already on the waitlist.
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- Right Section: Focused Form -->
+            <section class="flex-1 flex flex-col justify-center items-center p-6 md:p-24 bg-surface z-10">
+                <!-- Mobile Brand Header -->
+                <div class="md:hidden w-full mb-12 flex items-center gap-2">
+                    <span class="material-symbols-outlined text-primary text-3xl">monitoring</span>
+                    <span class="text-xl font-bold tracking-tighter text-on-surface font-headline uppercase">Riskora</span>
+                </div>
+                <div class="w-full max-w-md space-y-10">
+                    <header class="space-y-3">
+                        <h1 class="text-4xl md:text-5xl font-extrabold font-headline tracking-tighter text-on-surface">
+                            Secure your spot.
+                        </h1>
+                        <p class="text-on-surface-variant text-base leading-relaxed">
+                            Register your interest for the exclusive institutional waitlist. We are rolling out access to select partners.
+                        </p>
+                    </header>
+                    <!-- Form Container -->
+                    <form class="space-y-6" onsubmit="handleSignup(event)">
+                        <div class="space-y-1.5">
+                            <label class="text-xs font-bold uppercase tracking-widest text-on-surface-variant ml-1 font-label">Full Name</label>
+                            <div class="relative group">
+                                <input class="w-full bg-surface-container-low border-none rounded-xl py-4 px-5 text-on-surface placeholder:text-outline/40 focus:ring-1 focus:ring-primary/40 transition-all duration-300 font-body" id="full_name" placeholder="Johnathan Sterling" type="text" required/>
+                            </div>
+                        </div>
+                        <div class="space-y-1.5">
+                            <label class="text-xs font-bold uppercase tracking-widest text-on-surface-variant ml-1 font-label">Work Email</label>
+                            <div class="relative group">
+                                <input class="w-full bg-surface-container-low border-none rounded-xl py-4 px-5 text-on-surface placeholder:text-outline/40 focus:ring-1 focus:ring-primary/40 transition-all duration-300 font-body" id="work_email" placeholder="name@institutional.com" type="email" required/>
+                            </div>
+                        </div>
+                        <div class="space-y-1.5">
+                            <label class="text-xs font-bold uppercase tracking-widest text-on-surface-variant ml-1 font-label">Company</label>
+                            <div class="relative group">
+                                <input class="w-full bg-surface-container-low border-none rounded-xl py-4 px-5 text-on-surface placeholder:text-outline/40 focus:ring-1 focus:ring-primary/40 transition-all duration-300 font-body" id="company" placeholder="Your company or firm" type="text"/>
+                            </div>
+                        </div>
+                        <div class="pt-4">
+                            <button class="primary-gradient w-full py-5 rounded-xl text-on-primary font-extrabold font-headline tracking-widest uppercase text-sm hover:opacity-90 transition-all duration-300 tonal-glow transform active:scale-[0.98]" type="submit">
+                                JOIN WAITLIST
+                            </button>
+                        </div>
+                    </form>
+                    <footer class="pt-8 flex flex-col items-center md:items-start gap-4">
+                        <div class="flex items-center gap-6">
+                            <span class="text-[10px] text-outline font-bold uppercase tracking-widest">Powered by Riskora AI</span>
+                            <div class="w-1 h-1 bg-outline/20 rounded-full"></div>
+                            <span class="text-[10px] text-outline font-bold uppercase tracking-widest">TLS Encrypted</span>
+                        </div>
+                        <p class="text-xs text-on-surface-variant leading-relaxed text-center md:text-left">
+                            By signing up, you agree to our <a class="text-primary-fixed-dim font-semibold hover:underline underline-offset-4 decoration-primary/30 transition-all" href="#">Risk Disclosure</a> and <a class="text-primary-fixed-dim font-semibold hover:underline underline-offset-4 decoration-primary/30 transition-all" href="#">Privacy Policy</a>.
+                        </p>
+                    </footer>
+                </div>
+            </section>
+            <!-- Decorative Elements -->
+            <div class="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/10 to-transparent opacity-50"></div>
+            <div class="absolute -top-24 -left-24 w-64 h-64 bg-primary/5 rounded-full blur-[100px]"></div>
+            <div class="absolute -bottom-24 -right-24 w-96 h-96 bg-secondary/5 rounded-full blur-[100px]"></div>
+        </main>
+    </div>
+
+    <!-- ===================== PAGE 4: DASHBOARD ===================== -->
+    <div id="dashboard" class="page-section">
+        <main class="pt-32 pb-24 px-6 max-w-7xl mx-auto">
+            <!-- Hero Section -->
+            <section class="mb-16">
+                <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-8">
+                    <div class="max-w-2xl">
+                        <span class="text-primary font-bold tracking-[0.2em] uppercase text-xs mb-4 block">Institutional Access Confirmed</span>
+                        <h1 class="text-5xl md:text-7xl font-extrabold tracking-tighter leading-tight mb-6">
+                            Welcome to the <br/>
+                            <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-primary-container">Vanguard of Venture.</span>
+                        </h1>
+                        <p class="text-secondary text-lg max-w-lg leading-relaxed">
+                            You've secured your place among the first wave of risk architects. Your status provides priority entry to our upcoming decentralized liquidity engine.
+                        </p>
+                    </div>
+                    <!-- Position Card -->
+                    <div class="glass-panel p-8 rounded-xl border border-outline-variant/10 relative overflow-hidden group">
+                        <div class="absolute -right-8 -top-8 w-32 h-32 bg-primary/10 blur-3xl rounded-full"></div>
+                        <div class="relative z-10">
+                            <p class="text-on-surface-variant font-medium text-sm mb-1">Waitlist Position</p>
+                            <h2 class="text-6xl font-black tracking-tighter text-primary">#4,521</h2>
+                            <div class="mt-4 flex items-center gap-2 text-xs font-semibold text-primary bg-primary/10 px-3 py-1 rounded-full w-fit">
+                                <span class="material-symbols-outlined text-sm">trending_up</span>
+                                TOP 2% OF APPLICANTS
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- Bento Grid Content -->
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+                <!-- Network Growth Chart -->
+                <div class="md:col-span-8 bg-surface-container-low rounded-xl p-8 flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-start mb-8">
+                            <div>
+                                <h3 class="text-2xl font-bold tracking-tight mb-1">Network Growth</h3>
+                                <p class="text-on-surface-variant text-sm">Global ecosystem expansion velocity</p>
+                            </div>
+                            <div class="text-right">
+                                <span class="text-3xl font-bold text-primary">+12.4%</span>
+                                <p class="text-[10px] text-outline font-bold tracking-widest uppercase mt-1">Weekly Velocity</p>
+                            </div>
+                        </div>
+                        <!-- Mock Chart Visualization -->
+                        <div class="h-48 w-full flex items-end gap-2 px-2">
+                            <div class="flex-1 bg-surface-container-highest rounded-t-lg h-[40%] transition-all hover:bg-primary/40"></div>
+                            <div class="flex-1 bg-surface-container-highest rounded-t-lg h-[55%] transition-all hover:bg-primary/40"></div>
+                            <div class="flex-1 bg-surface-container-highest rounded-t-lg h-[45%] transition-all hover:bg-primary/40"></div>
+                            <div class="flex-1 bg-surface-container-highest rounded-t-lg h-[70%] transition-all hover:bg-primary/40"></div>
+                            <div class="flex-1 bg-surface-container-highest rounded-t-lg h-[60%] transition-all hover:bg-primary/40"></div>
+                            <div class="flex-1 bg-surface-container-highest rounded-t-lg h-[85%] transition-all hover:bg-primary/40"></div>
+                            <div class="flex-1 bg-primary rounded-t-lg h-[100%]"></div>
+                        </div>
+                    </div>
+                    <div class="mt-8 pt-8 border-t border-outline-variant/10 flex justify-between items-center">
+                        <div class="flex -space-x-3">
+                            <div class="w-8 h-8 rounded-full border-2 border-surface bg-surface-container-highest overflow-hidden">
+                                <img class="w-full h-full object-cover" alt="professional portrait" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDXapSnDt9ubwTIdBFfWG2etCpMMudcKQeFJiipXGqt2QonSRg6yoILNoY-X0ds7Li9hqvYmvuA3FUWk_7juhqtmLTOALjL0eJ4LfRozPNO7VRb1vX8Epmowi-aPuoPZKEHVp-hrpPyvq_hmGie2yeSsSo96eKUuO2-W7g4-fX_97G43q8BULoPJMIe779DmzBngrMu9HtNpZ_kasCHRiTxTb7nYIC5SJtUsEo95UWn95hpka_upOaG242IuPUNuzRmP0Q61ciNRUM"/>
+                            </div>
+                            <div class="w-8 h-8 rounded-full border-2 border-surface bg-surface-container-highest overflow-hidden">
+                                <img class="w-full h-full object-cover" alt="portrait of woman" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCbcniNRri_hVPkY2lkLfJRUEFnUhFvEROhx5fU2wGFWFSSCu2l6WCEr3XoYCooJ7cPCSvlFNVLbaddTwuyeAVEtyXMv44wWHQVGKbtPse1Gp2HjYDo2j3ad6M2_8d5DEu92SwACEh1Lh8qy03bzb68qNrp0NSsnzQXDK8PU6mPaOLZCAusOk4-2UhJ6Ck0-2zT0SqRu9o4ajfmBKPr8WqOrJyJBqJRYjW0-8O7GoJEqFgukPnrj2YmMVCf6J4ez3HscEu_6Lf39t4"/>
+                            </div>
+                            <div class="w-8 h-8 rounded-full border-2 border-surface bg-surface-container-highest overflow-hidden">
+                                <img class="w-full h-full object-cover" alt="portrait of man" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAbxf7vV5WDGNeOGJOgx29BDbM5x2SjmlNTQ6pIKP4scDosONwV-ukqEV1_KFPCX1jshOEpgJOEclJRI4rrb7elAoXEsTb9x6ra8dkaSkWErUOfHAxwfgHJ-XIRhaDCKFD3k7l53-_NatvDbg4bBu1UWQQldz7QDMvQ04KikpadETQ-1cf7f79Qh0Bi3mxqn9AYrsFqfWY2t5YGlf0_KlZkHxj-IoTAOLb-zlXWAtRkHodoPvEQ-NRZx3_gBX18aTIWLz13oFQaKQE"/>
+                            </div>
+                            <div class="w-8 h-8 rounded-full border-2 border-surface bg-surface-container-high flex items-center justify-center text-[10px] font-bold">
+                                +12k
+                            </div>
+                        </div>
+                        <p class="text-xs text-on-surface-variant font-medium">Join 48,290 others in the risk revolution.</p>
+                    </div>
+                </div>
+                <!-- Referral Section -->
+                <div class="md:col-span-4 bg-surface-container-high rounded-xl p-8 border border-outline-variant/5">
+                    <div class="mb-8">
+                        <div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-4">
+                            <span class="material-symbols-outlined">rocket_launch</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Accelerate Status</h3>
+                        <p class="text-secondary text-sm leading-relaxed">Refer institutional partners to jump ahead in the queue. Each referral moves you up 500 spots.</p>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="p-4 bg-surface-container-lowest rounded-xl border border-outline-variant/20">
+                            <label class="text-[10px] uppercase tracking-widest text-outline font-bold mb-2 block">Your Unique Invite Code</label>
+                            <div class="flex items-center justify-between">
+                                <code class="text-primary font-mono font-bold tracking-wider">RISKORA-8821-VX</code>
+                                <button class="text-on-surface hover:text-primary transition-colors" onclick="copyToClipboard('RISKORA-8821-VX')">
+                                    <span class="material-symbols-outlined">content_copy</span>
+                                </button>
+                            </div>
+                        </div>
+                        <button class="w-full py-4 bg-gradient-to-r from-primary to-primary-container text-on-primary font-bold rounded-xl active:scale-95 transition-transform shadow-lg shadow-primary/10" onclick="shareReferral()">
+                            Share Referral Link
+                        </button>
+                    </div>
+                </div>
+                <!-- Membership Perks -->
+                <div class="md:col-span-12 lg:col-span-12 grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
+                    <div class="md:col-span-3 mb-4">
+                        <h3 class="text-2xl font-bold tracking-tight">Membership Perks</h3>
+                    </div>
+                    <div class="bg-surface-container-low p-8 rounded-xl hover:bg-surface-container transition-colors group">
+                        <span class="material-symbols-outlined text-primary mb-4 text-3xl">terminal</span>
+                        <h4 class="font-bold text-lg mb-2">Analytics Engine</h4>
+                        <p class="text-on-surface-variant text-sm leading-relaxed">Gain day-zero access to our proprietary risk calculation engine and API infrastructure.</p>
+                    </div>
+                    <div class="bg-surface-container-low p-8 rounded-xl hover:bg-surface-container transition-colors group">
+                        <span class="material-symbols-outlined text-primary mb-4 text-3xl">hub</span>
+                        <h4 class="font-bold text-lg mb-2">Founder Network</h4>
+                        <p class="text-on-surface-variant text-sm leading-relaxed">Exclusive entry to private Discord channels with venture pioneers and institutional leads.</p>
+                    </div>
+                    <div class="bg-surface-container-low p-8 rounded-xl hover:bg-surface-container transition-colors group">
+                        <span class="material-symbols-outlined text-primary mb-4 text-3xl">token</span>
+                        <h4 class="font-bold text-lg mb-2">Genesis Allocation</h4>
+                        <p class="text-on-surface-variant text-sm leading-relaxed">Early participant bonuses for the Riskora governance framework launching Q4 2024.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Visual Decorative Section -->
+            <section class="mt-24 rounded-2xl overflow-hidden relative h-64 flex items-center justify-center">
+                <img class="absolute inset-0 w-full h-full object-cover opacity-40 grayscale hover:grayscale-0 transition-all duration-1000" alt="abstract digital visualization" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDEgdhdqb55Ax4q3k8imRaRrYWga8VNmgOI0DMI07lrn9HmgwOdqzwmwJx-UTaDPLE400amWx-oXs_S2D1oke3EaX27fBPbmIguW_Dupns2dx__cspvGKW3wocfUxZyqtMk_pW63QHj9UeJMPdVeDH_maGqGVaL5CEdLy2QsTxv7k60ll3Nqxc-lEVzUM0svpFB8QdkeeufpthZCjPX5OgOcrS3KbwyItEhfS4QG7HyjGVDvPGeVhhblRDqAWaMD6v9aRCKWNkhmSI"/>
+                <div class="absolute inset-0 bg-gradient-to-t from-surface via-surface/40 to-transparent"></div>
+                <div class="relative z-10 text-center">
+                    <h3 class="text-3xl font-bold tracking-tight mb-4">Ready for the Next Era?</h3>
+                    <p class="text-secondary max-w-md mx-auto px-4">The transition from traditional finance to autonomous risk management is here. You're exactly where you need to be.</p>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Global Footer -->
+    <footer class="w-full border-t border-slate-800/50 bg-slate-950">
+        <div class="flex flex-col md:flex-row justify-between items-center px-8 py-12 gap-6 w-full max-w-7xl mx-auto">
+            <div class="flex flex-col gap-2">
+                <div class="flex items-center gap-2 mb-2">
+                    <span class="material-symbols-outlined text-emerald-500">monitoring</span>
+                    <span class="font-headline font-bold text-lg tracking-tight text-white">Riskora</span>
+                </div>
+                <p class="font-['Inter'] text-xs tracking-wide uppercase font-semibold text-slate-500">
+                    © 2024 Riskora Technologies. Institutional Grade Intelligence.
+                </p>
+            </div>
+            <div class="flex flex-wrap justify-center gap-x-8 gap-y-4 font-['Inter'] text-xs tracking-wide uppercase font-semibold">
+                <a class="text-slate-500 hover:text-emerald-400 underline decoration-emerald-500/30 underline-offset-4 transition-all duration-200" href="#">Privacy Policy</a>
+                <a class="text-slate-500 hover:text-emerald-400 underline decoration-emerald-500/30 underline-offset-4 transition-all duration-200" href="#">Terms of Service</a>
+                <a class="text-slate-500 hover:text-emerald-400 underline decoration-emerald-500/30 underline-offset-4 transition-all duration-200" href="#">Risk Disclosure</a>
+                <a class="text-slate-500 hover:text-emerald-400 underline decoration-emerald-500/30 underline-offset-4 transition-all duration-200" href="#">Regulatory Compliance</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Navigation and Functionality -->
+    <script>
+        // Navigation function
+        function navigateTo(page) {
+            // Hide all pages
+            const pages = document.querySelectorAll('.page-section');
+            pages.forEach(p => p.classList.remove('active'));
+            
+            // Show selected page
+            document.getElementById(page).classList.add('active');
+            
+            // Update navigation links
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => link.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+
+        // Signup form handler
+        function handleSignup(event) {
+            event.preventDefault();
+            
+            const fullName = document.getElementById('full_name').value;
+            const email = document.getElementById('work_email').value;
+            const company = document.getElementById('company').value;
+            
+            if (fullName && email) {
+                // Show success message
+                alert(`Thank you ${fullName}! You've been added to the waitlist.\n\nConfirmation email sent to ${email}`);
+                
+                // Navigate to dashboard
+                setTimeout(() => {
+                    navigateTo('dashboard');
+                }, 500);
+                
+                // Reset form
+                event.target.reset();
+            }
+        }
+
+        // Copy to clipboard
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                alert('Referral code copied to clipboard!');
+            });
+        }
+
+        // Share referral
+        function shareReferral() {
+            const code = 'RISKORA-8821-VX';
+            const text = `Join Riskora - The next generation of institutional grade intelligence. Use my referral code: ${code}`;
+            
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Riskora Institutional Intelligence',
+                    text: text,
+                    url: window.location.href
+                }).catch(err => console.log('Error sharing:', err));
+            } else {
+                alert('Referral link: ' + window.location.href + '\nYour code: ' + code);
+            }
+        }
+
+        // Update navigation on page load
+        window.addEventListener('load', () => {
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    navLinks.forEach(l => l.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
